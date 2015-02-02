@@ -8,19 +8,36 @@ import java.util.Random;
 public class Character{
 
     private String name;
+    private int maxHealth;
     private int health;
     private int level;
 
-    public Character(String name, int health, int level)
+    public Character(String name, int maxHealth, int level)
     {
         this.name = name;
-        this.health = health;
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;
         this.level = level;
     }
 
     public void TakeDamage(int damage)
     {
         this.health = this.health - damage;
+    }
+
+    public int Heal()
+    {
+        Random rand = new Random();
+        int randInt = rand.nextInt(10);
+        int heal = (this.level * randInt / 10) + 1;
+
+        this.health = this.health + heal;
+        if (this.health > this.maxHealth)
+        {
+            this.health = this.maxHealth;
+        }
+
+        return heal;
     }
 
     public int Attack()

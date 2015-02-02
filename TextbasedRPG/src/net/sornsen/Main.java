@@ -6,11 +6,10 @@ public class Main{
 	// write your code here
 
         Character player = new Character("Stig", 100, 1);
-        Character mob = new Character("Zombie", 10, 1);
+        Character mob = new Character("Zombie",50, 1);
 
-        int attack = player.Attack();
-        mob.TakeDamage(attack);
-        System.out.println(mob.GetHealth());
+        Battle battle = new Battle(player, mob);
+
 
 
     }
