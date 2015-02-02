@@ -12,6 +12,8 @@ public class Character{
     private int health;
     private int level;
 
+    public Character()
+    {}
     public Character(String name, int maxHealth, int level)
     {
         this.name = name;

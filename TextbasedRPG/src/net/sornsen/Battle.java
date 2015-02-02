@@ -5,46 +5,59 @@ import java.util.Scanner;
 /**
  * Created by Admin on 02-02-2015.
  */
-public class Battle {
-
-    public Battle(Character player, Character enemy)
+public class Battle
+{
+    public Battle(Player player, Character enemy)
     {
+        Main.WriteText("(A)ttack, (H)eal, (F)Flee");
+
         while (player.GetHealth() > 0 && enemy.GetHealth() > 0)
         {
-            System.out.println("You have " + player.GetHealth() + "HP and the enemy has " + enemy.GetHealth() + "HP");
-            System.out.println("(A)ttack, (H)eal, (F)Flee");
+            Main.WriteText("You: " + player.GetHealth() + "HP | " + enemy.GetName() + ": " + enemy.GetHealth() + "HP");
+
             Scanner scan = new Scanner(System.in);
             String move = scan.nextLine().toUpperCase();
 
-            boolean turnSuccessful = true;
-            if (move.equals("A"))
-            {
-                int attack = player.Attack();
-                enemy.TakeDamage(attack);
+            if (move.equals("A") || move.equals("H") || move.equals("F")) {
 
-                System.out.println("You attacked " + enemy.GetName() + " with a strength of " + attack + "HP!");
-            }
-            else if (move.equals("H"))
-            {
-                int heal = player.Heal();
-                System.out.println("You healed " + heal + "HP");
-            }
-            else if (move.equals("F"))
-            {
+                if (move.equals("A"))
+                {
+                    int playerAttack = player.Attack();
+                    enemy.TakeDamage(playerAttack);
 
+                    Main.WriteText("You attacked " + enemy.GetName() + " with a strength of " + playerAttack + "HP!");
+
+                } else if (move.equals("H"))
+                {
+                    int heal = player.Heal();
+                    Main.WriteText("You healed " + heal + "HP");
+
+                } else if (move.equals("F"))
+                {
+
+                }
+
+                if (enemy.GetHealth() > 0)
+                {
+                    // Enemy logic here..
+                    int enemyAttack = enemy.Attack();
+                    player.TakeDamage(enemyAttack);
+                    Main.WriteText(enemy.GetName() + " attacked you with a strength of " + enemyAttack + "HP!");
+                }
             }
             else
             {
-                turnSuccessful = false;
+                Main.WriteText("(A)ttack, (H)eal, (F)Flee");
             }
+        }
 
-            if (turnSuccessful == true) {
-                // Enemy logic here..
-                int attack = enemy.Attack();
-                player.TakeDamage(attack);
-
-                System.out.println(enemy.GetName() + " attacked you with a strength of " + attack + "HP!");
-            }
+        if (enemy.GetHealth() <= 0)
+        {
+            Main.WriteText("You killed " + enemy.GetName());
+        }
+        else if (player.GetHealth() <= 0)
+        {
+            Main.WriteText("You died..");
         }
     }
 }
