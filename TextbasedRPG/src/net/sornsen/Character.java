@@ -8,9 +8,9 @@ import java.util.Random;
 public class Character{
 
     private String name;
-    private int maxHealth;
-    private int health;
-    private int level;
+    protected int maxHealth;
+    protected int health;
+    protected int level;
 
     public Character()
     {}
@@ -46,7 +46,7 @@ public class Character{
     {
         Random rand = new Random();
         int randInt = rand.nextInt(100);
-        int attack = (this.level * randInt / 10) + 1;
+        int attack = ((this.level * randInt) / 10) + 1;
 
         return attack;
     }
@@ -59,6 +59,11 @@ public class Character{
     public int GetHealth()
     {
         return this.health;
+    }
+
+    public int GetMaxHealth()
+    {
+        return this.maxHealth;
     }
 
     public int GetLevel()
