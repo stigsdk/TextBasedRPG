@@ -10,7 +10,7 @@ public class Main{
 
         Enemy mob2 = new Enemy("Zombie", 10, 2);
 
-        Enemy mob3 = new Enemy("Zombie", 50, 50);
+        Enemy mob3 = new Enemy("Zombie", 50, 3);
         Battle battle1 = new Battle(player, mob1);
         Battle battle2 = new Battle(player, mob2);
         Battle battle3 = new Battle(player, mob3);

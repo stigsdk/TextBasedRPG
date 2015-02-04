@@ -65,7 +65,6 @@ public class Battle
                         player.TakeDamage(enemyAttack);
                         Main.WriteText(enemy.GetName() + " attacked you with a strength of " + enemyAttack + "HP!");
                     }
-
                 }
             }
             else
