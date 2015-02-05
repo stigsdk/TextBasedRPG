@@ -18,6 +18,11 @@ public class TileMap {
     private int mapWidth;
     private int mapHeight;
 
+    private int minX;
+    private int minY;
+    private int maxX = 0;
+    private int maxY = 0;
+
     public TileMap(String s, int tileSize) {
         this.tileSize = tileSize;
 
@@ -28,6 +33,9 @@ public class TileMap {
             mapHeight = Integer.parseInt(br.readLine());
 
             map = new int[mapHeight][mapWidth];
+
+            minX = GamePanel.WIDTH - mapWidth * tileSize;
+            minY = GamePanel.HEIGHT -  mapHeight * tileSize;
 
             String delimeters = " ";
             for (int row = 0; row < mapHeight; row++)
@@ -43,13 +51,51 @@ public class TileMap {
         catch (Exception ex) {
             Main.WriteText(ex.getMessage());
         }
+    }
 
+    public int getX() { return x; }
+    public int getY() { return y; }
 
+    public int getColTile(int x) {
+        return x / tileSize;
+    }
+
+    public int getRowTile(int y) {
+        return y / tileSize;
+    }
+
+    public int getTile(int row, int col)
+    {
+        return map[row][col];
+    }
+    public int getTileSize() {
+        return tileSize;
+    }
+    public void setX(int i) {
+        x = i;
+
+        if(x < minX) {
+            x = minX;
+        }
+        if (x > maxX) {
+            x = maxX;
+        }
 
     }
+    public void setY(int i) {
+        y = i;
+
+        if(y < minY) {
+            y = minY;
+        }
+        if (y > maxY) {
+            y = maxY;
+        }
+
+    }
+
     public void update() {
     }
-
     public void draw(Graphics2D g)
     {
         for (int row = 0; row < mapHeight; row++)
@@ -60,7 +106,6 @@ public class TileMap {
 
                 if (rc == 0) {
                     g.setColor(Color.gray);
-
                 }
                 if (rc == 1)
                 {

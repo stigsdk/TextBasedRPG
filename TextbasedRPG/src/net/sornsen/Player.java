@@ -12,7 +12,7 @@ public class Player extends Character
     {
         super(name, maxHealth, level);
         this.xp = 0;
-        this.nextXpLevel = 10;
+        this.nextXpLevel = 50;
     }
 
     public void AddXp(int xp)
